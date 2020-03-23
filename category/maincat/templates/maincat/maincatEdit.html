@@ -1,0 +1,16 @@
+{%extends 'base_layout.html'%}
+
+
+{%block content%}
+    <div class="container">
+        <h1> Edit Category </h1>
+        <hr>
+        <form class="form-group" action="{% url 'maincat:change' id%}" method="post">
+            {% csrf_token %}
+            {{form}}
+            <input type="submit" value="Update">
+        </form> 
+
+    </div>
+
+{% endblock %}

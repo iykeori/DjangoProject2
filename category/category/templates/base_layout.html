@@ -1,0 +1,53 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Django Project</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        
+    </head>
+    <body>
+    
+        
+        <header class="wrapper">            
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                {% comment %} <a class="navbar-brand" href="#">Navbar</a> {% endcomment %}
+                <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'logo.png'%}" height= "50" width="150"/></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <ul class="navbar-nav mr-auto">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <form class="nav-link" action="{% url 'accounts:logout'%}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Logout</button>
+                        </form>
+
+                    </li>
+                    <li class="nav-item"><a href="{% url 'product:add'%}" class="nav-link"> +Add New Product |</a></li>
+                    <li class="nav-item"><a href="{% url 'maincat:add'%}" class="nav-link"> +Add New Category |</a></li>
+                    <li class="nav-item"><a href="{% url 'product:list'%}" class="nav-link"> Product-List |</a></li>
+                    <li class="nav-item"><a href="{% url 'maincat:list'%}" class="nav-link"> Category-List</a></li>
+                    
+                    
+                    {% else %}
+                        <li class="nav-item"><a href="{% url 'accounts:login' %}" class="nav-link"> Login</a></li>
+                        <li class="nav-item"><a href="{% url 'accounts:signup' %}" class="nav-link"> Signup</a></li>
+
+                    {% endif %}
+                </ul>
+
+            </nav>
+        </header> 
+        <div class="container">
+            {% block content %}
+
+            {% endblock %}
+
+        </div>
+    
+    </body>
+</html> 

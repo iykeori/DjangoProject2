@@ -1,0 +1,55 @@
+{%extends 'base_layout.html'%}
+
+
+{%block content%}
+    <div class="create-article">
+        <h2> Category List </h2>
+        <hr>
+        {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ message | safe }}
+            </div>
+        {% endfor %}
+
+    </div>
+    <div class="col-md-12">
+        <a href="{%url 'maincat:add'%}">+Add New Category</a><br/><br/>
+        <table class="table">
+                <thead>
+                        <th><strong>Id</strong> </th>
+                        <th><strong>Category</strong> </th>
+                        
+                </thead>            
+            {% for cat in catList %}
+                <tr>
+                    <td><strong>{{cat.id}}</strong></td>
+                    <td>{{cat.category}}</td>
+                    
+                    
+                    <td>
+                        
+
+                        <div class="row">
+                                <div class="col-sm-6">
+                                    <a href="{%url 'maincat:change' id=cat.id %}" class="btn btn-primary btn-block">Edit</a>
+                                </div>
+    
+                                <div class="col-sm-6">
+                                    <a href="{%url 'maincat:delete' id=cat.id %}" class='btn btn-danger btn-block'>Delete</a>
+                        
+                                    
+                                </div>
+                        </div>  
+                    </td>
+
+                </tr>
+            {% endfor %}
+        </table>
+            
+    </div> 
+
+
+{% endblock %}

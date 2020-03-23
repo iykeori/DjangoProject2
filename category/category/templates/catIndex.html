@@ -1,0 +1,45 @@
+{%extends 'base_layout.html'%}
+
+
+{%block content%}
+    <div class="create-product">
+        
+         <a href="{%url 'home'%}"><h2> List of Products </h2></a><br/>
+        <hr>
+
+        <div class="col-md-12">
+            {% comment %} <a href="{%url 'product:add'%}">+Add New Item</a><br/><br/> {% endcomment %}
+            <table class="table">
+                <thead>
+                    <th><strong>Id</strong> </th>
+                    <th><strong>Category</strong> </th>
+                    <th><strong>Item Title</strong> </th>
+                    <th><strong>description</strong> </th>
+                    <th><strong>Price</strong> </th>
+                    <th><strong>Quantity</strong> </th>
+                    <th><strong>Sku</strong> </th>
+                    <th><strong>Image</strong> </th>
+                </thead>
+                {% for item in productList %}
+                    <tr>
+                        <td><strong>{{item.id}}</strong></td>
+                        <td>{{item.category}}</td>
+                        <td>{{item.item_title}}</td>
+                        <td>{{item.description}}</td>
+                        <td>{{item.price}}</td>
+                        <td>{{item.quantity}}</td>
+                        <td>{{item.sku}}</td>
+                        <td><img src ="{{item.thumb.url}}" height= "100" width="100" /> </td>
+                        
+                        
+
+                    </tr>
+                {% endfor %}
+            </table >
+        
+        </div> 
+
+    </div>
+    
+
+{% endblock %}
